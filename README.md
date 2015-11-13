@@ -4,11 +4,12 @@ In the paper, [Connective field modeling](http://www.ncbi.nlm.nih.gov/pubmed/231
 
 The code provided in this repository is intended to retrieve already computed pRF model parameters, ROIs times series and compute CF models. The idea is to use the function `pRFandCFdata` to collect, compute and store, in an easy to handle structure, all relevant parameters. The function depends on the following inputs:
 
-A loaded mrVista session (view) with loaded source and target ROIs.
-Path to a folder containing the pRF model.
-Datatype numbers (This is vestigial for now. It can be useful to compute many dataTypes at once).
-Variance explained threshold for plotting pRF maps (optional).
-Number of frames and TR.
+* A loaded mrVista session (view) with loaded source and target ROIs.
+* Path to the pRF model.
+* Datatype number.
+* Variance explained threshold for plotting pRF maps (optional).
+* Number of frames and TR.
+
 The output of this function is the structure `pRFandCFdata_dataType_sourceROI_targetROI`, which contains:
 
 * Source and target ROI time series.
