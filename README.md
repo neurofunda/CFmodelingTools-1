@@ -2,7 +2,7 @@
 
 In the paper, [Connective field modeling](http://www.ncbi.nlm.nih.gov/pubmed/23110879), Koen Haak introduces a novel method to analyze cortico-cortical functional connectivity between retinotopic cortices. Here I show how to implement the code with mrVista to compute connective field (CF) models in matlab 2011b.
 
-The code provided in this repository is intended to retrieve already computed pRF model parameters, ROIs times series and compute CF models. The idea is to use the function `pRFandCFdata` to collect, compute and store, in an easy to handle structure, all relevent parameters. The function depends on the following inputs:
+The code provided in this repository is intended to retrieve already computed pRF model parameters, ROIs times series and compute CF models. The idea is to use the function `pRFandCFdata` to collect, compute and store, in an easy to handle structure, all relevant parameters. The function depends on the following inputs:
 
 A loaded mrVista session (view) with loaded source and target ROIs.
 Path to a folder containing the pRF model.
@@ -32,6 +32,11 @@ And the sub-structure "cf", which contains the CF parameters:
 This function also computes the power spectrum of the detrended time series, plots them and save the images as pdf files. The power spectrum is computed using Chronux.
 
 See example inside `pRFandCFdata`.
+
+The compute the displacement of CF centers between a reference and a condition data types use `computeCF displacement` :
+
+`CFdis = computeCFdisplacements('./Analysis/','Averages','RS1','LV1','LV3',0);` 
+
 
 References:
 

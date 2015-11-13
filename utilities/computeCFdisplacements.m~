@@ -1,0 +1,24 @@
+function [ CFdis ] = computeCFdisplacements(folder,refDataType,dataType,source_L,target_L,source_R,target_R,VEthr)
+% reference 
+load(strcat(folder,'pRFandCFdata_',refDataType,'_',sourc,'_',target_L,'.mat'););
+conIndexVFM_L = pRFandCFdata.cf.conIndex;
+distances_L = pRFandCFdata.sourceDistances;
+
+% condition
+load(strcat(folder,'pRFandCFdata_',dataType,'_',source,'_',target,'.mat'););
+VE_L = pRFandCFdata.cf.correctedVE;
+conIndex_L = pRFandCFdata.cf.conIndex;
+ve = VE_L;
+ind = find(ve > VEthr);
+conRS_L = conIndex_L;
+D = distances_L(conIndexVFM_L,conRS_L);
+CFdisplacements_L = diag(D);
+CFdisplacements_L = CFdisplacements_L(ind);
+
+
+
+CFdis = CFdisplacements;
+
+return
+
+
