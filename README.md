@@ -33,7 +33,7 @@ This function also computes the power spectrum of the detrended time series, plo
 
 See example inside `pRFandCFdata`.
 
-The compute the displacement of CF centers between a reference and a condition data types use `computeCF displacement` :
+The compute the displacement of CF centers between a reference and an X condition use `computeCF displacement` :
 
 `CFdis = computeCFdisplacements('./Analysis/','Averages','RS1','LV1','LV3',0);` 
 
