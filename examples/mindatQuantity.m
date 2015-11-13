@@ -90,7 +90,6 @@ clear all
 totalTR=240;
 wSize=40;
 bins=totalTR/wSize;
-label='_cumSum40TR_';
 %data = strcat('./Analysis/mindatAnalysis_LV1_LV3.mat');
 data = strcat('mindatAnalysis_LV1_LV3.mat');
 load(data);
