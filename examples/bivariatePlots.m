@@ -52,7 +52,7 @@ title('CF scatter frequency scatter');
 % Bivariate histogram
 %--------------------------------------------------------------------------
 % function  [] = histog2(X,Y,binX,binY,cMax,xmax,ymax,xLabel,yLabel)
-histog2(pRFandCFdata.cf.correctedVE,cfCdis',10,2,10,1,40,'Variance explained','CF scatter (mm)');
+bvhistog(pRFandCFdata.cf.correctedVE,cfCdis',10,2,10,1,40,'Variance explained','CF scatter (mm)');
 title('CF scatter vs variance eplxained');
 
 %--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ hold on
 data = cat(1,X,Y);
 data = sortrows(data,1)';
 [ResMat,NewMat] = binning(data,1,0,15); % Binned stats
-boundedline(NewMat(:,1),NewMat(:,2), NewMat(:,3)); % Fancy bounded line
+%boundedline(NewMat(:,1),NewMat(:,2), NewMat(:,3)); % Fancy bounded line
 errorbar(NewMat(:,1),NewMat(:,2),NewMat(:,3),'--kx'); % Error bars
 xlabel('pRF eccentricity (deg)','FontSize', 14);
 ylabel('CF scatter (mm)','FontSize', 14);

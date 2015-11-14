@@ -1,4 +1,4 @@
-function  [] = histog2(X,Y,binX,binY,cMax,xmax,ymax,xLabel,yLabel)
+function  [] = bvhistog(X,Y,binX,binY,cMax,xmax,ymax,xLabel,yLabel)
 figure,
 %# bin centers (integers)
 xbins = floor(min(X)):1/binX:ceil(max(X));
