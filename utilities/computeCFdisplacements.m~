@@ -1,4 +1,4 @@
-function [ CFdis Vdis ] = computeCFdisplacements(path2Ref,path2X,VEthr)
+function [ CFdis ] = computeCFdisplacements(path2Ref,path2X,VEthr)
 
 % reference 
 load(path2Ref);
@@ -16,7 +16,7 @@ polX = pRFandCFdata.cf.pol;
 ind = find(VE > VEthr);
 
 CFdis = diag(distances(con(ind),conRef(ind)));
-Vdis = sqrt(eccRef(ind).^2 + eccX(ind).^2 - 2.*eccRef(ind).*eccX(ind).*cos(polRef(ind) - polX(ind)))';
+Vdis = sqrt(eccRef(ind).^2 + eccX(ind).^2 - 2.*eccRef(ind).*eccX(ind).*cos(polRef(ind) - polX(ind)));
 
 return
 
