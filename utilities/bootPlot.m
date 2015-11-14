@@ -1,11 +1,8 @@
 function data = bootPlot(X, Y, W, EVthresh, binsize,range,maxX,maxY,labelX,labelY)
 
-Y = Y;
-X = X;
 varexp = W;
 
 % thresholds
-EVthresh = EVthresh;
 thresh.X = range + [binsize -binsize];
 
 % plotting parameters
@@ -61,7 +58,7 @@ for b=thresh.X(1):binsize:thresh.X(2),
     end;
 end;
 
-%   data.x(23) = [];
+% data.x(23) = [];
 % quantile regression, compute the 95% bootstrap confidence interval over the median 
 [pq,stats] = quantreg(data.x,data.ymed',0.5,1,1000);
 
@@ -92,7 +89,6 @@ q2 = plot(data.x,data.b_lowerq,'--k','LineWidth',1);
 % p2 = plot(data.b_xfit,data.b_lower,'--k','LineWidth',1);
 % %     set(p1,'Color',[.6 .6 1]);
 % %     set(p2,'Color',[.6 .6 1]);
-
 
 xlabel(labelX,'FontSize', 14);
 ylabel(labelY,'FontSize', 14);

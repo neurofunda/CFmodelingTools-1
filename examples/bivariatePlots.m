@@ -57,25 +57,21 @@ histog2(pRFandCFdata.cf.correctedVE,CFdis',10,2,10,1,40,'VE','CF displacement')
 % Bivariate plot
 %--------------------------------------------------------------------------
 
-% weighted linear regression:
-
 figure,
 % Thresholding of data
 EVthresh = 0.35;
 X = pRFandCFdata.targetVCoords(1,:);
-Y = CFdis';
+Y = CFdis'; % CF scatter
 W = pRFandCFdata.cf.correctedVE;
+xmax = 6;
+ymax= 40;
 dataMatrix = cat(2,W',X',Y');
 dataAbove = dataMatrix(dataMatrix(:,1)>EVthresh,:);
 W = dataAbove(:,1)';
 X = dataAbove(:,2)';
 Y = dataAbove(:,3)';
-xmax = 6;
-ymax= 40;
-
 scatter(X,Y,0.5,[0 0 0]+0.1); % Raw data
 hold on
-
 data = cat(1,X,Y);
 data = sortrows(data,1)';
 [ResMat,NewMat] = binning(data,1,0,15); % Binned stats
@@ -89,3 +85,15 @@ set(gca,'LineWidth',1)
 set(gcf, 'color', 'w');
 axis square
 title('CF eccentricity vs CF scatter');
+
+
+% Linear reressions
+% Thresholding of data
+EVthresh = 0.35;
+X = pRFandCFdata.sourceVCoords(1,:);
+Y = pRFandCFdata.sourceSigma;
+W = pRFandCFdata.sourceVE;
+% Bootstrap quantile (found to be the most reliable. If needed, find code for mean and median based
+% regressions inside function bootPlot)
+% bootPlot(X, Y, W, EVthresh, binsize,range,maxX,maxY,labelX,labelY)
+data = bootPlot(X, Y , W, 0.35, 1, [0 7],7,3,'pRF eccentricity (rad)','pRF size (mm)')
