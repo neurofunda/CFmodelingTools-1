@@ -1,16 +1,15 @@
-function [ CFdisplacements ] = computeCFdisplacements(folder,refDataType,dataType,source,target,VEthr)
+function [ CFdisplacements ] = computeCFdisplacements(path2Ref,path2X,VEthr)
 
 % reference 
-load(strcat(folder,'pRFandCFdata_',refDataType,'_',source,'_',target,'.mat'));
+load(path2Ref);
 conRef = pRFandCFdata.cf.conIndex;
 distances = pRFandCFdata.sourceDistances;
 
 % condition
-load(strcat(folder,'pRFandCFdata_',dataType,'_',source,'_',target,'.mat'));
-VE_L = pRFandCFdata.cf.correctedVE;
+load(path2X);
+VE = pRFandCFdata.cf.correctedVE;
 con = pRFandCFdata.cf.conIndex;
-ve = VE_L;
-ind = find(ve > VEthr);
+ind = find(VE > VEthr);
 
 CFdisplacements = diag(distances(con(ind),conRef(ind)));
 
