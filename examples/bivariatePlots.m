@@ -9,14 +9,49 @@ path2X = strcat('pRFandCFdata_',XdataType,'_',source,'_',target,'.mat');
 %Compute CF displacement between reference and X condition
 CFdis = computeCFdisplacements(path2Ref,path2X,0);
 
+%--------------------------------------------------------------------------
+% Frequency histogram
+%--------------------------------------------------------------------------
+load(path2X);
+% Cortical displacement
+figure,
+%X = CFdis;
+X = pRFandCFdata.cf.correctedVE;
+% zeros = find(X==0);
+% mfd = setdiff(1:length(X), zeros);
+% X = X(mfd);
+%C=0:0.25:40; % CF scatter
+C=0:0.05:1; % VE
+[Ns]=histc(X,C);
+relativefreqNs = Ns ./ sum(Ns);
+b(1) = bar(C,relativefreqNs,'histc');
+% hold on
+% X = CFdis;
+% zeros = find(X==0);
+% mfd = setdiff(1:length(X), zeros);
+% X = X(mfd);
+% C=0:0.25:20;
+% [Ns]=histc(X,C);
+% relativefreqNs = Ns ./ sum(Ns);
+%b(2) = bar(C,relativefreqNs,'histc');
+set(gca, 'FontSize', 14);
+set(gca,'LineWidth',1)
+set(gcf, 'color', 'w');
+axis square
+title('CF scatter');
+xlabel('Distance (mm)','FontSize', 14);
+ylabel('Relative frequency','FontSize', 14);
+%xlim([0 50]); % CF scatter
+xlim([0 1]); % VE
+b = findobj(gca,'Type','patch');
+set(b(1),'FaceColor', 'k','EdgeColor', 'k','facealpha',0.8,'edgealpha',0);
+% set(b(2),'FaceColor', 'g','EdgeColor', 'g','facealpha',0.2,'edgealpha',0);
 
 %--------------------------------------------------------------------------
 % Bivariate histogram
 %--------------------------------------------------------------------------
-load(path2X);
-
-figure,
-histog2(pRFandCFdata.cf.correctedVE,CFdis',50,10,3,1,40,'VE','CF displacement')
+% function  [] = histog2(X,Y,binX,binY,cMax,xmax,ymax,xLabel,yLabel)
+histog2(pRFandCFdata.cf.correctedVE,CFdis',10,2,10,1,40,'VE','CF displacement')
 
 %--------------------------------------------------------------------------
 % Bivariate plot
@@ -25,7 +60,6 @@ histog2(pRFandCFdata.cf.correctedVE,CFdis',50,10,3,1,40,'VE','CF displacement')
 % weighted linear regression:
 
 figure,
-
 % Thresholding of data
 EVthresh = 0.35;
 X = pRFandCFdata.targetVCoords(1,:);
@@ -55,4 +89,3 @@ set(gca,'LineWidth',1)
 set(gcf, 'color', 'w');
 axis square
 title('CF eccentricity vs CF scatter');
-

@@ -1,4 +1,5 @@
 function  [] = histog2(X,Y,binX,binY,cMax,xmax,ymax,xLabel,yLabel)
+figure,
 %# bin centers (integers)
 xbins = floor(min(X)):1/binX:ceil(max(X));
 ybins = floor(min(Y)):1/binY:ceil(max(Y));
@@ -14,15 +15,15 @@ H = accumarray([Yi(:) Xi(:)], 1, [yNumBins xNumBins]);
 %# plot 2D histogram
 imagesc(xbins, ybins, H), axis on %# axis image
 hold on
-data=cat(1,X,Y); 
-data=sortrows(data,1)';
-[ResMat,NewMat]=binning(data,1,0,15);
+data = cat(1,X,Y); 
+data = sortrows(data,1)';
+[ResMat,NewMat] = binning(data,1,[],[]);
 %errorbar(NewMat(:,1),NewMat(:,2),NewMat(:,3),'kx');
 cmap = colormap(hot);
 %cmap = colormap(flipud(haxby)); 
 colormap(cmap);  
 caxis([0 cMax]);
-cb=colorbar;
+cb = colorbar;
 xlabel(cb,'#', 'FontSize', 14);%hold on, plot(X, Y, 'b.', 'MarkerSize',1), hold off
 set(gca,'YDir','normal')
 set(gca, 'FontSize', 14);
