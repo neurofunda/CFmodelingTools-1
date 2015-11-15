@@ -43,14 +43,11 @@
 % ROIS{1} = strcat(hemis,source) % Source ROI
 % ROIS{2} = strcat(hemis,target) % Target ROI
 % view = loadROI(view, ROIS,[], [], 0, 1);   
-% 
 % cf = computeCF(view,1,0,i,pRFmodel,0);
 % VE{(i-10),1} = cf.correctedVE;
 % surrogateVE{i,1} = cf.scorrectedVE;
-% clear cf
-% 
-% view = deleteAllROIs(view); view = refreshScreen(view,0);
-% 
+% clear cf 
+% view = deleteAllROIs(view); view = refreshScreen(view,0); 
 % % Right hemisphere and ROIs
 % hemis = 'R';
 % source = 'V1';
